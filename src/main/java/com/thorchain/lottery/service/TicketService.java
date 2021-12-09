@@ -20,11 +20,7 @@ public class TicketService {
     public List<Ticket> generateTicketsForPlayer(Player player) {
         List<Ticket> tickets = new ArrayList<>();
         for (int i = 0; i < calculateAmountOfTickets(player); i++) {
-            tickets.add(
-                    new Ticket(
-                    player.getPlayerAddress() + UUID.randomUUID(),
-                            player.getPlayerAddress())
-            );
+            tickets.add(new Ticket(player.getPlayerAddress() + UUID.randomUUID(), player));
         }
         return tickets;
     }

@@ -1,12 +1,32 @@
 package com.thorchain.lottery.model;
 
-public class Ticket {
-    private String codeOfTicket;
-    private String ticketOwnerId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-    public Ticket(String codeOfTicket, String ticketOwnerId) {
+import javax.persistence.*;
+
+@Entity
+public class Ticket {
+    private Long ticketId;
+    private String codeOfTicket;
+    private Player ticketOwner;
+
+    public Ticket(String codeOfTicket, Player ticketOwner) {
         this.codeOfTicket = codeOfTicket;
-        this.ticketOwnerId = ticketOwnerId;
+        this.ticketOwner = ticketOwner;
+    }
+
+    public Ticket() {
+
+    }
+
+    public void setTicketId(Long ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getTicketId() {
+        return ticketId;
     }
 
     public String getCodeOfTicket() {
@@ -17,19 +37,22 @@ public class Ticket {
         this.codeOfTicket = codeOfTicket;
     }
 
-    public String getTicketOwnerId() {
-        return ticketOwnerId;
+    @ManyToOne(fetch= FetchType.LAZY, cascade=CascadeType.ALL)
+    @JsonBackReference
+    public Player getTicketOwner() {
+        return ticketOwner;
     }
 
-    public void setTicketOwnerId(String ticketOwnerId) {
-        this.ticketOwnerId = ticketOwnerId;
+    public void setTicketOwner(Player ticketOwner) {
+        this.ticketOwner = ticketOwner;
     }
 
     @Override
     public String toString() {
         return "Ticket{" +
-                "codeOfTicket='" + codeOfTicket + '\'' +
-                ", ticketOwnerId='" + ticketOwnerId + '\'' +
+                "ticketId=" + ticketId +
+                ", codeOfTicket='" + codeOfTicket + '\'' +
+                ", ticketOwner=" + ticketOwner +
                 '}';
     }
 }
