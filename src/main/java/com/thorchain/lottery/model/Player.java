@@ -8,14 +8,12 @@ import java.util.List;
 @Entity
 public class Player {
     private String playerAddress;
-    private String playerNickname;
     private int ticketsAmount;
     private List<Ticket> tickets;
     private List<Lottery> lotteries;
 
-    public Player(String playerAddress, String playerNickname) {
+    public Player(String playerAddress) {
         this.playerAddress = playerAddress;
-        this.playerNickname = playerNickname;
     }
 
     public Player() {
@@ -29,14 +27,6 @@ public class Player {
 
     public void setPlayerAddress(String playerAddress) {
         this.playerAddress = playerAddress;
-    }
-
-    public String getPlayerNickname() {
-        return playerNickname;
-    }
-
-    public void setPlayerNickname(String playerNickname) {
-        this.playerNickname = playerNickname;
     }
 
     public int getTicketsAmount() {
@@ -70,7 +60,6 @@ public class Player {
     public String toString() {
         return "Player{" +
                 "playerAddress='" + playerAddress + '\'' +
-                ", playerNickname='" + playerNickname + '\'' +
                 ", ticketsAmount=" + ticketsAmount +
                 ", tickets=" + tickets +
                 ", lotteries=" + lotteries +
